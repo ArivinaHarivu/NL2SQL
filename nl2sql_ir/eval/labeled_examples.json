@@ -1,0 +1,84 @@
+{
+  "_comment": "Starter set of 5 labeled (question, expected_ir) pairs. Expand to 30-40 before Phase 7 of the larger project.",
+  "examples": [
+    {
+      "question": "What is the total revenue from all orders?",
+      "expected_ir": {
+        "entities": ["orders"],
+        "metric": {"operation": "SUM", "column": "orders.o_totalprice"},
+        "filters": [],
+        "time_filter": null,
+        "group_by": [],
+        "having": null,
+        "order_by": null,
+        "limit": null,
+        "subquery": null,
+        "unsupported": false
+      }
+    },
+    {
+      "question": "Top 10 customers by account balance",
+      "expected_ir": {
+        "entities": ["customer"],
+        "metric": null,
+        "filters": [],
+        "time_filter": null,
+        "group_by": [],
+        "having": null,
+        "order_by": {"column": "customer.c_acctbal", "direction": "DESC"},
+        "limit": 10,
+        "subquery": null,
+        "unsupported": false
+      }
+    },
+    {
+      "question": "Count orders by order priority",
+      "expected_ir": {
+        "entities": ["orders"],
+        "metric": {"operation": "COUNT", "column": "orders.o_orderkey"},
+        "filters": [],
+        "time_filter": null,
+        "group_by": ["orders.o_orderpriority"],
+        "having": null,
+        "order_by": null,
+        "limit": null,
+        "subquery": null,
+        "unsupported": false
+      }
+    },
+    {
+      "question": "List suppliers in France",
+      "expected_ir": {
+        "entities": ["supplier", "nation"],
+        "metric": null,
+        "filters": [{"field": "nation.n_name", "op": "=", "value": "FRANCE"}],
+        "time_filter": null,
+        "group_by": [],
+        "having": null,
+        "order_by": null,
+        "limit": null,
+        "subquery": null,
+        "unsupported": false
+      }
+    },
+    {
+      "question": "Total revenue from orders in 1995",
+      "expected_ir": {
+        "entities": ["orders"],
+        "metric": {"operation": "SUM", "column": "orders.o_totalprice"},
+        "filters": [],
+        "time_filter": {
+          "column": "orders.o_orderdate",
+          "range": ["1995-01-01", "1995-12-31"],
+          "resolution": "default_column"
+        },
+        "group_by": [],
+        "having": null,
+        "order_by": null,
+        "limit": null,
+        "subquery": null,
+        "unsupported": false
+      }
+    }
+  ]
+}

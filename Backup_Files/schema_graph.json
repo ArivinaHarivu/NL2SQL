@@ -1,0 +1,482 @@
+{
+  "tables": {
+    "region": {
+      "columns": {
+        "r_regionkey": {
+          "type": "integer",
+          "pk": true,
+          "fk": null,
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "r_name": {
+          "type": "char(25)",
+          "pk": false,
+          "fk": null,
+          "tags": ["entity_name", "filterable"],
+          "synonyms": ["region name", "region"]
+        },
+        "r_comment": {
+          "type": "varchar(152)",
+          "pk": false,
+          "fk": null,
+          "tags": [],
+          "synonyms": []
+        }
+      },
+      "default_time_column": null
+    },
+    "nation": {
+      "columns": {
+        "n_nationkey": {
+          "type": "integer",
+          "pk": true,
+          "fk": null,
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "n_name": {
+          "type": "char(25)",
+          "pk": false,
+          "fk": null,
+          "tags": ["entity_name", "filterable"],
+          "synonyms": ["nation name", "country", "country name"]
+        },
+        "n_regionkey": {
+          "type": "integer",
+          "pk": false,
+          "fk": "region.r_regionkey",
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "n_comment": {
+          "type": "varchar(152)",
+          "pk": false,
+          "fk": null,
+          "tags": [],
+          "synonyms": []
+        }
+      },
+      "default_time_column": null
+    },
+    "supplier": {
+      "columns": {
+        "s_suppkey": {
+          "type": "integer",
+          "pk": true,
+          "fk": null,
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "s_name": {
+          "type": "char(25)",
+          "pk": false,
+          "fk": null,
+          "tags": ["entity_name", "filterable"],
+          "synonyms": ["supplier name", "vendor name"]
+        },
+        "s_address": {
+          "type": "varchar(40)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["supplier address"]
+        },
+        "s_nationkey": {
+          "type": "integer",
+          "pk": false,
+          "fk": "nation.n_nationkey",
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "s_phone": {
+          "type": "char(15)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["phone number", "supplier phone"]
+        },
+        "s_acctbal": {
+          "type": "decimal(15,2)",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["account balance", "balance", "supplier balance"]
+        },
+        "s_comment": {
+          "type": "varchar(101)",
+          "pk": false,
+          "fk": null,
+          "tags": [],
+          "synonyms": []
+        }
+      },
+      "default_time_column": null
+    },
+    "customer": {
+      "columns": {
+        "c_custkey": {
+          "type": "integer",
+          "pk": true,
+          "fk": null,
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "c_name": {
+          "type": "varchar(25)",
+          "pk": false,
+          "fk": null,
+          "tags": ["entity_name", "filterable"],
+          "synonyms": ["customer name"]
+        },
+        "c_address": {
+          "type": "varchar(40)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["customer address"]
+        },
+        "c_nationkey": {
+          "type": "integer",
+          "pk": false,
+          "fk": "nation.n_nationkey",
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "c_phone": {
+          "type": "char(15)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["phone", "customer phone"]
+        },
+        "c_acctbal": {
+          "type": "decimal(15,2)",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["account balance", "balance", "customer balance"]
+        },
+        "c_mktsegment": {
+          "type": "char(10)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["market segment", "segment"]
+        },
+        "c_comment": {
+          "type": "varchar(117)",
+          "pk": false,
+          "fk": null,
+          "tags": [],
+          "synonyms": []
+        }
+      },
+      "default_time_column": null
+    },
+    "orders": {
+      "columns": {
+        "o_orderkey": {
+          "type": "integer",
+          "pk": true,
+          "fk": null,
+          "tags": ["identifier"],
+          "synonyms": ["order id", "order number"]
+        },
+        "o_custkey": {
+          "type": "integer",
+          "pk": false,
+          "fk": "customer.c_custkey",
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "o_orderstatus": {
+          "type": "char(1)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["order status", "status"]
+        },
+        "o_totalprice": {
+          "type": "decimal(15,2)",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["revenue", "spend", "total price", "order total", "order amount", "order value"]
+        },
+        "o_orderdate": {
+          "type": "date",
+          "pk": false,
+          "fk": null,
+          "tags": ["time"],
+          "synonyms": ["order date", "date ordered", "placed date"]
+        },
+        "o_orderpriority": {
+          "type": "char(15)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["order priority", "priority"]
+        },
+        "o_clerk": {
+          "type": "char(15)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["clerk"]
+        },
+        "o_shippriority": {
+          "type": "integer",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["shipping priority"]
+        },
+        "o_comment": {
+          "type": "varchar(79)",
+          "pk": false,
+          "fk": null,
+          "tags": [],
+          "synonyms": []
+        }
+      },
+      "default_time_column": "o_orderdate"
+    },
+    "lineitem": {
+      "columns": {
+        "l_orderkey": {
+          "type": "integer",
+          "pk": false,
+          "fk": "orders.o_orderkey",
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "l_partkey": {
+          "type": "integer",
+          "pk": false,
+          "fk": "part.p_partkey",
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "l_suppkey": {
+          "type": "integer",
+          "pk": false,
+          "fk": "supplier.s_suppkey",
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "l_linenumber": {
+          "type": "integer",
+          "pk": true,
+          "fk": null,
+          "tags": ["identifier"],
+          "synonyms": ["line number"]
+        },
+        "l_quantity": {
+          "type": "decimal(15,2)",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["quantity", "qty", "amount ordered"]
+        },
+        "l_extendedprice": {
+          "type": "decimal(15,2)",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["extended price", "line price", "price", "line total"]
+        },
+        "l_discount": {
+          "type": "decimal(15,2)",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["discount"]
+        },
+        "l_tax": {
+          "type": "decimal(15,2)",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["tax"]
+        },
+        "l_returnflag": {
+          "type": "char(1)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["return flag", "returned"]
+        },
+        "l_linestatus": {
+          "type": "char(1)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["line status"]
+        },
+        "l_shipdate": {
+          "type": "date",
+          "pk": false,
+          "fk": null,
+          "tags": ["time"],
+          "synonyms": ["ship date", "shipping date", "date shipped"]
+        },
+        "l_commitdate": {
+          "type": "date",
+          "pk": false,
+          "fk": null,
+          "tags": ["time"],
+          "synonyms": ["commit date", "committed date"]
+        },
+        "l_receiptdate": {
+          "type": "date",
+          "pk": false,
+          "fk": null,
+          "tags": ["time"],
+          "synonyms": ["receipt date", "received date", "date received"]
+        },
+        "l_shipinstruct": {
+          "type": "char(25)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["shipping instruction", "ship instruction"]
+        },
+        "l_shipmode": {
+          "type": "char(10)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["shipping mode", "ship mode", "delivery method"]
+        },
+        "l_comment": {
+          "type": "varchar(44)",
+          "pk": false,
+          "fk": null,
+          "tags": [],
+          "synonyms": []
+        }
+      },
+      "default_time_column": "l_shipdate"
+    },
+    "part": {
+      "columns": {
+        "p_partkey": {
+          "type": "integer",
+          "pk": true,
+          "fk": null,
+          "tags": ["identifier"],
+          "synonyms": ["part id"]
+        },
+        "p_name": {
+          "type": "varchar(55)",
+          "pk": false,
+          "fk": null,
+          "tags": ["entity_name", "filterable"],
+          "synonyms": ["part name", "product name"]
+        },
+        "p_mfgr": {
+          "type": "char(25)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["manufacturer"]
+        },
+        "p_brand": {
+          "type": "char(10)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["brand"]
+        },
+        "p_type": {
+          "type": "varchar(25)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["part type", "product type", "type"]
+        },
+        "p_size": {
+          "type": "integer",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric", "filterable"],
+          "synonyms": ["size", "part size"]
+        },
+        "p_container": {
+          "type": "char(10)",
+          "pk": false,
+          "fk": null,
+          "tags": ["filterable"],
+          "synonyms": ["container", "packaging"]
+        },
+        "p_retailprice": {
+          "type": "decimal(15,2)",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["retail price", "list price", "msrp"]
+        },
+        "p_comment": {
+          "type": "varchar(23)",
+          "pk": false,
+          "fk": null,
+          "tags": [],
+          "synonyms": []
+        }
+      },
+      "default_time_column": null
+    },
+    "partsupp": {
+      "columns": {
+        "ps_partkey": {
+          "type": "integer",
+          "pk": true,
+          "fk": "part.p_partkey",
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "ps_suppkey": {
+          "type": "integer",
+          "pk": true,
+          "fk": "supplier.s_suppkey",
+          "tags": ["identifier"],
+          "synonyms": []
+        },
+        "ps_availqty": {
+          "type": "integer",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["available quantity", "stock", "inventory", "supply quantity"]
+        },
+        "ps_supplycost": {
+          "type": "decimal(15,2)",
+          "pk": false,
+          "fk": null,
+          "tags": ["metric"],
+          "synonyms": ["supply cost", "cost", "unit cost"]
+        },
+        "ps_comment": {
+          "type": "varchar(199)",
+          "pk": false,
+          "fk": null,
+          "tags": [],
+          "synonyms": []
+        }
+      },
+      "default_time_column": null
+    }
+  },
+  "relations": [
+    {"from": "nation.n_regionkey", "to": "region.r_regionkey", "cardinality": "many-to-one"},
+    {"from": "supplier.s_nationkey", "to": "nation.n_nationkey", "cardinality": "many-to-one"},
+    {"from": "customer.c_nationkey", "to": "nation.n_nationkey", "cardinality": "many-to-one"},
+    {"from": "orders.o_custkey", "to": "customer.c_custkey", "cardinality": "many-to-one"},
+    {"from": "lineitem.l_orderkey", "to": "orders.o_orderkey", "cardinality": "many-to-one"},
+    {"from": "lineitem.l_partkey", "to": "part.p_partkey", "cardinality": "many-to-one"},
+    {"from": "lineitem.l_suppkey", "to": "supplier.s_suppkey", "cardinality": "many-to-one"},
+    {"from": "partsupp.ps_partkey", "to": "part.p_partkey", "cardinality": "many-to-one"},
+    {"from": "partsupp.ps_suppkey", "to": "supplier.s_suppkey", "cardinality": "many-to-one"}
+  ]
+}
